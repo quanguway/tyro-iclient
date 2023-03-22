@@ -48,7 +48,7 @@
 var system = [TYROUI_SIMULATOR, CUSTOMUI_SIMULATOR];
 var configurationURLs = ["https://iclientsimulator.test.tyro.com/configuration.html", "https://iclient.test.tyro.com/configuration.html"];
 var configurationUrl = configurationURLs[0];
-var apiKey = "iPqaqk7PXPEIcCMhZPmml0efsajK590";  // API Key not validated in either test environment
+var apiKey = "Test API Key";  // API Key not validated in either test environment
 var posProductInfo = {posProductVendor: "Tyro Payments", posProductName: "Mini Cloud POS", posProductVersion: "1.0.0"};
 var simulator = true;
 
@@ -177,25 +177,20 @@ function doPurchaseWithTyroUI() {
     var amount = $("#amount").val();
     var cashout = $("#cashout").val();
     var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
-    try {
-        
-        iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: true}, {
-            receiptCallback: function (receipt) {
-                console.log("Print merchant receipt:");
-                console.log(JSON.stringify(receipt));
-                // $("#merchantReceipt").html(formatReceipt(receipt.merchantReceipt));
-            },
-            transactionCompleteCallback: function (response) {
-                console.log("Purchase response: " + JSON.stringify(response));
-                if (response.customerReceipt) {
-                    $("#customerReceipt").html(formatReceipt(response.customerReceipt));
-                }
-                $("#result").html(formatResult(response));
+    iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: true}, {
+        receiptCallback: function (receipt) {
+            console.log("Print merchant receipt:");
+            console.log(JSON.stringify(receipt));
+            $("#merchantReceipt").html(formatReceipt(receipt.merchantReceipt));
+        },
+        transactionCompleteCallback: function (response) {
+            console.log("Purchase response: " + JSON.stringify(response));
+            if (response.customerReceipt) {
+                $("#customerReceipt").html(formatReceipt(response.customerReceipt));
             }
-        });
-    } catch (error) {
-        console.log(error);
-    }
+            $("#result").html(formatResult(response));
+        }
+    });
 }
 
 function doRefundWithTyroUI() {
@@ -408,7 +403,6 @@ function doBrowserCheck() {
 }
 
 function createBrowserCompatabilityTable() {
-    console.log(Modernizr);
     var table = "<table>";
     table += createRow("Local storage", Modernizr.localstorage);
     table += createRow("Application cache", Modernizr.applicationcache);
