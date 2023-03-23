@@ -173,15 +173,14 @@ $().ready(function () {
 });
 
 function doPurchaseWithTyroUI() {
-    // var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
     try {
         $("#result").html('');
         $("#merchantReceipt").html('');
         $("#customerReceipt").html('');
         var amount = $("#amount").val();
         var cashout = $("#cashout").val();
-        // var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
-        var iclient = new TYRO.IClientWithUI(apiKey, posProductInfo)
+        var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
+        // var iclient = new TYRO.IClientWithUI(apiKey, posProductInfo)
         console.log('---- iclient ----');
         console.log(iclient);
         iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: true}, {
