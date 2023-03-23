@@ -29,7 +29,7 @@
     // Only required because we are loading both iclient versions into the global namespace
     var TYROUI_SIMULATOR = TYRO;
 </script>
-<script type="text/javascript" src="https://iclientsimulator.tyro.com/iclient-v1.js"></script>
+<!-- <script type="text/javascript" src="https://iclientsimulator.tyro.com/iclient-v1.js"></script> -->
 <script type="text/javascript">
     // Only required because we are loading both iclient versions into the global namespace
     var CUSTOMUI_SIMULATOR = TYRO;
@@ -312,7 +312,7 @@ function doReset() {
     var iclient = new window.TYRO.IClientWithUI(apiKey, posProductInfo);
     iclient.getConfiguration(function(config) {
         
-        var url = "https://integrationsimulator.tyro.com/terminals/76657/3/reset";
+        var url = "https://iclient.tyro.com/terminals/76657/3/reset";
         console.log(config);
         var jqxhr = $.get(url, function() {
             alert("Simulator has been reset");
