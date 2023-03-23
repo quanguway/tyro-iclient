@@ -171,26 +171,38 @@ $().ready(function () {
 });
 
 function doPurchaseWithTyroUI() {
-    $("#result").html('');
-    $("#merchantReceipt").html('');
-    $("#customerReceipt").html('');
-    var amount = $("#amount").val();
-    var cashout = $("#cashout").val();
-    var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
-    iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: true}, {
-        receiptCallback: function (receipt) {
-            console.log("Print merchant receipt:");
-            console.log(JSON.stringify(receipt));
-            $("#merchantReceipt").html(formatReceipt(receipt.merchantReceipt));
-        },
-        transactionCompleteCallback: function (response) {
-            console.log("Purchase response: " + JSON.stringify(response));
-            if (response.customerReceipt) {
-                $("#customerReceipt").html(formatReceipt(response.customerReceipt));
+    // var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
+    try {
+        $("#result").html('');
+        $("#merchantReceipt").html('');
+        $("#customerReceipt").html('');
+        var amount = $("#amount").val();
+        var cashout = $("#cashout").val();
+        
+        var iclient = window.TYRO.IClientWithUI(apiKey, posProductInfo)
+        console.log('---- iclient ----');
+        console.log(iclient);
+        iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: true}, {
+            receiptCallback: function (receipt) {
+                // console.log("Print merchant receipt:");
+                // console.log(JSON.stringify(receipt));
+                console.log('-------- receiptCallback receipt -----------');
+                console.log(receipt);
+                $("#merchantReceipt").html(formatReceipt(receipt.merchantReceipt));
+            },
+            transactionCompleteCallback: function (response) {
+                console.log('---------- transactionCompleteCallback response --------');
+                console.log(response);
+                if (response.customerReceipt) {
+                    $("#customerReceipt").html(formatReceipt(response.customerReceipt));
+                }
+                $("#result").html(formatResult(response));
             }
-            $("#result").html(formatResult(response));
-        }
-    });
+        });
+    } catch (error) {
+        console.log('-------- err doPurchaseWithTyroUI ---------');
+        console.log(error);
+    }
 }
 
 function doRefundWithTyroUI() {
