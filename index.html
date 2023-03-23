@@ -307,7 +307,7 @@ function doCancelTransaction() {
 }
 
 function doReset() {
-    var iclient = new system[1].IClient(apiKey, posProductInfo);
+    var iclient = new system[1].IClientWithUI(apiKey, posProductInfo);
 
     // var iclient = new window.TYRO.IClient(apiKey, posProductInfo);
     iclient.getConfiguration(function(config) {
