@@ -34,7 +34,7 @@
     // Only required because we are loading both iclient versions into the global namespace
     var CUSTOMUI_SIMULATOR = TYRO;
 </script>
-<script type="text/javascript" src="https://iclient.tyro.com/iclient-with-ui-v1.js"></script>
+<!-- <script type="text/javascript" src="https://iclient.tyro.com/iclient-with-ui-v1.js"></script> -->
 <script type="text/javascript">
     // Only required because we are loading both iclient versions into the global namespace
     var TYROUI_TEST = TYRO;
@@ -180,7 +180,7 @@ function doPurchaseWithTyroUI() {
         var amount = $("#amount").val();
         var cashout = $("#cashout").val();
         // var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
-        var iclient = new window.TYRO.IClientWithUI(apiKey, posProductInfo)
+        var iclient = TYRO.IClient(apiKey, posProductInfo)
         console.log('---- iclient ----');
         console.log(iclient);
         iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: true}, {
