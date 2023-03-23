@@ -307,9 +307,12 @@ function doCancelTransaction() {
 }
 
 function doReset() {
-    var iclient = new system[1].IClient(apiKey, posProductInfo);
+    // var iclient = new system[1].IClient(apiKey, posProductInfo);
+
+    var iclient = new window.TYRO.IClient(apiKey, posProductInfo);
     iclient.getConfiguration(function(config) {
-        var url = "https://integrationsimulator.test.tyro.com/terminals/" + config.mid + "/" + config.tid + "/reset";
+        
+        var url = "https://integrationsimulator.test.tyro.com/terminals/76657/3/reset";
         console.log(config);
         var jqxhr = $.get(url, function() {
             alert("Simulator has been reset");
