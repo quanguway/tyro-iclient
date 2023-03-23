@@ -179,8 +179,8 @@ function doPurchaseWithTyroUI() {
         $("#customerReceipt").html('');
         var amount = $("#amount").val();
         var cashout = $("#cashout").val();
-        var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
-        // var iclient = new TYRO.IClient(apiKey, posProductInfo)
+        // var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
+        var iclient = new TYRO.IClientWithUI(apiKey, posProductInfo)
         console.log('---- iclient ----');
         console.log(iclient);
         iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: true}, {
@@ -307,9 +307,9 @@ function doCancelTransaction() {
 }
 
 function doReset() {
-    var iclient = new system[1].IClientWithUI(apiKey, posProductInfo);
+    // var iclient = new system[1].IClientWithUI(apiKey, posProductInfo);
 
-    // var iclient = new window.TYRO.IClient(apiKey, posProductInfo);
+    var iclient = new window.TYRO.IClientWithUI(apiKey, posProductInfo);
     iclient.getConfiguration(function(config) {
         
         var url = "https://integrationsimulator.tyro.com/terminals/76657/3/reset";
