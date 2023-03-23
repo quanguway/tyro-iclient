@@ -310,6 +310,7 @@ function doReset() {
     var iclient = new system[1].IClient(apiKey, posProductInfo);
     iclient.getConfiguration(function(config) {
         var url = "https://integrationsimulator.test.tyro.com/terminals/" + config.mid + "/" + config.tid + "/reset";
+        console.log(config);
         var jqxhr = $.get(url, function() {
             alert("Simulator has been reset");
         }).fail(function(e) {
