@@ -183,7 +183,7 @@ function doPurchaseWithTyroUI() {
         // var iclient = TYRO.IClient(apiKey, posProductInfo)
         console.log('---- iclient ----');
         console.log(iclient);
-        iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: true}, {
+        iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: false}, {
             receiptCallback: function (receipt) {
                 // console.log("Print merchant receipt:");
                 // console.log(JSON.stringify(receipt));
